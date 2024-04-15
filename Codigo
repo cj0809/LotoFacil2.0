@@ -1,0 +1,106 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Random;
+
+public class LotoFacilGUI extends JFrame implements ActionListener {
+    private JLabel labelResultado;
+    private JTextField textFieldAposta;
+    private JButton buttonApostarDe0a100;
+    private JButton buttonApostarDeAaZ;
+    private JButton buttonApostarParOuImpar;
+
+    public LotoFacilGUI() {
+        setTitle("LOTOFÁCIL");
+        setSize(400, 300);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setResizable(false);
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(5, 1));
+
+        JLabel labelTitulo = new JLabel("Bem-vindo à LOTOFÁCIL!");
+        labelTitulo.setFont(new Font("Arial", Font.BOLD, 20));
+        labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(labelTitulo);
+
+        labelResultado = new JLabel("");
+        labelResultado.setFont(new Font("Arial", Font.PLAIN, 16));
+        labelResultado.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(labelResultado);
+
+        textFieldAposta = new JTextField();
+        panel.add(textFieldAposta);
+
+        buttonApostarDe0a100 = new JButton("Apostar de 0 a 100");
+        buttonApostarDeAaZ = new JButton("Apostar de A à Z");
+        buttonApostarParOuImpar = new JButton("Apostar em par ou ímpar");
+
+        buttonApostarDe0a100.addActionListener(this);
+        buttonApostarDeAaZ.addActionListener(this);
+        buttonApostarParOuImpar.addActionListener(this);
+
+        panel.add(buttonApostarDe0a100);
+        panel.add(buttonApostarDeAaZ);
+        panel.add(buttonApostarParOuImpar);
+
+        add(panel);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Random random = new Random();
+
+        if (e.getSource() == buttonApostarDe0a100) {
+            int aposta;
+            try {
+                aposta = Integer.parseInt(textFieldAposta.getText());
+                int numeroSorteado = random.nextInt(101);
+
+                if (aposta < 0 || aposta > 100) {
+                    labelResultado.setText("Aposta inválida.");
+                    return;
+                }
+
+                if (aposta == numeroSorteado) {
+                    labelResultado.setText("<html><font color='green'>Parabéns! Você ganhou R$ 1.000,00!</font></html>");
+                } else {
+                    labelResultado.setText("<html><font color='red'>Que pena! O número sorteado foi: " + numeroSorteado + ".</font></html>");
+                }
+            } catch (NumberFormatException ex) {
+                labelResultado.setText("Aposta inválida.");
+            }
+        } else if (e.getSource() == buttonApostarDeAaZ) {
+            char letraPremiada = 'J';
+            char letra = Character.toUpperCase(textFieldAposta.getText().charAt(0));
+
+            if (Character.isLetter(letra)) {
+                if (letra == letraPremiada) {
+                    labelResultado.setText("<html><font color='green'>Parabéns! Você ganhou R$ 500,00!</font></html>");
+                } else {
+                    labelResultado.setText("<html><font color='red'>Que pena! A letra sorteada foi: " + letraPremiada + ".</font></html>");
+                }
+            } else {
+                labelResultado.setText("Aposta inválida.");
+            }
+        } else if (e.getSource() == buttonApostarParOuImpar) {
+            try {
+                int numero = Integer.parseInt(textFieldAposta.getText());
+
+                if (numero % 2 == 0) {
+                    labelResultado.setText("<html><font color='green'>Parabéns! Você ganhou R$ 100,00!</font></html>");
+                } else {
+                    labelResultado.setText("<html><font color='red'>Que pena! O número digitado é ímpar e a premiação foi para números pares.</font></html>");
+                }
+            } catch (NumberFormatException ex) {
+                labelResultado.setText("Aposta inválida.");
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new LotoFacilGUI().setVisible(true));
+    }
+}
