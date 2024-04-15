@@ -25,6 +25,12 @@ Para utilizar o sistema, basta executar uma classe LotoFacilGUI.java. Isso abrir
 
 Este projeto é uma demonstração simples de como criar uma aplicação Java com interface gráfica usando a biblioteca Swing. Sinta-se à vontade para explorar e modificar o código conforme necessário!
 
+![image](https://github.com/cj0809/LotoFacil2.0/assets/114233329/f56e7afa-e9a4-420b-aa42-29f6d367ea61)
+![image](https://github.com/cj0809/LotoFacil2.0/assets/114233329/cb7d5d9d-7996-4e1c-8580-a65193d74c11)
+![image](https://github.com/cj0809/LotoFacil2.0/assets/114233329/8c7991a7-5419-41dc-a7df-761b7000b161)
+![image](https://github.com/cj0809/LotoFacil2.0/assets/114233329/d617cb6e-277e-4d56-943e-0611f43ee86d)
 
 
-![image](https://github.com/cj0809/LotoFacil2.0/assets/114233329/68b52a40-e6ba-489b-9fdc-33f2d47592cd)
+
+
+
